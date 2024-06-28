@@ -30,4 +30,11 @@
 @else
     <p>Задача не знайдена</p>
 @endif
+    <form action="{{route('tasks.destroy', ['id' => $tasks->id])}}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit">Delete</button>
+
+    </form>
+
 @endsection

@@ -9,7 +9,7 @@ use App\Models\Task;
 Route::get('/tasks', function ()  {
     return view('index',
     [
-        'tasks' => Task::latest('updated_at')->get()
+        'tasks' => Task::latest('updated_at')->paginate(6)
     ]);
 }) ->name('tasks.index');
 
@@ -73,6 +73,15 @@ Route::put('/tasks/edit', function($id, Request $request){
     $task -> completed = $data['checkbox'];
     $task -> save();
 })->name('tasks.complete');
+
+Route::delete('/tasks/{id}', function ($id){
+
+    $task = Task::findOrFail($id);
+    $task -> delete();
+
+    return redirect()->route('tasks.index')-> with('success', 'Task deleted');
+
+})->name('tasks.destroy');
 /* Route::get('/cab', function () {
     return 'cabinet';
 });

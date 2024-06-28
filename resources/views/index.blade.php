@@ -51,6 +51,7 @@ a {
 @endsection
 
 @section('content')
+<a href="{{ route('tasks.create') }}" class="btn btn-success">Create Task</a>
 <div class="task-list">
 @forelse($tasks as $task)
 <div class="task">
@@ -67,5 +68,9 @@ a {
 NO TASKS
 @endforelse
 </div>
-
+@if($tasks->count())
+   {{ $tasks->links() }}
+@endif
 @endsection
+
+
