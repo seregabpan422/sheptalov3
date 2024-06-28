@@ -9,7 +9,7 @@ use App\Models\Task;
 Route::get('/tasks', function ()  {
     return view('index',
     [
-        'tasks' => Task::latest('updated_at')->paginate(6)
+        'tasks' => Task::latest('updated_at')->paginate(10)
     ]);
 }) ->name('tasks.index');
 
